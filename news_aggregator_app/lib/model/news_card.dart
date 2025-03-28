@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:news_aggregator_app/model/article.dart';
 
+// A stateless widget that represents a news card displaying article details.
 class NewsCard extends StatelessWidget {
   final Article article;
 
+  // Constructor to initialize the NewsCard with an article.
   const NewsCard({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
-    final String imageUrl = article.urlToImage;
+    // Extracting article details for display.
+    final String? imageUrl = article.urlToImage;
     final String title = article.title;
     final String description = article.description;
-    final String author = article.author;
-    final String source = article.source.name;
+    final String? author = article.author;
+    final String source = article.source!.name;
     final String publishedAt = article.publishedAt;
 
     return Card(
@@ -26,7 +29,7 @@ class NewsCard extends StatelessWidget {
           // Image Section
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-            child: imageUrl.isNotEmpty
+            child: imageUrl!.isNotEmpty
                 ? Image.network(
                     imageUrl,
                     height: 200,
@@ -135,6 +138,4 @@ class NewsCard extends StatelessWidget {
       ),
     );
   }
-
-
 }
